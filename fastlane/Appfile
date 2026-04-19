@@ -1,0 +1,12 @@
+# Fastlane — Appfile
+# Configuration des identifiants de l'application
+
+# Android
+json_key_file("fastlane/google-play-key.json")   # Clé API Google Play Console
+package_name("com.noor.app")
+
+# iOS
+app_identifier("com.noor.app")
+apple_id("votre.email@icloud.com")                # Votre Apple ID
+itc_team_id("")                                    # App Store Connect Team ID
+team_id("")                                        # Developer Portal Team ID

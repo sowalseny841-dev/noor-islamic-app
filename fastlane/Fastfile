@@ -1,0 +1,113 @@
+# Fastlane — Automatisation du déploiement Noor App
+# Installation: gem install fastlane
+# Usage: fastlane android deploy  |  fastlane ios beta
+
+default_platform(:android)
+
+# ═══════════════════════════════════════════════
+# ANDROID
+# ═══════════════════════════════════════════════
+platform :android do
+
+  desc "Lancer les tests unitaires"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Build AAB release et déployer sur Play Store (production)"
+  lane :deploy do
+    # Incrémente le build number
+    increment_version_code(
+      gradle_file_path: "android/app/build.gradle"
+    )
+
+    # Build Flutter AAB
+    sh("flutter build appbundle --release --obfuscate --split-debug-info=build/debug-symbols")
+
+    # Upload vers Play Store
+    upload_to_play_store(
+      track: "production",
+      aab: "build/app/outputs/bundle/release/app-release.aab",
+      release_status: "draft",          # Mettre "completed" pour publier directement
+      skip_upload_screenshots: false,
+      skip_upload_images: false,
+      metadata_path: "fastlane/metadata/android",
+    )
+
+    # Notification Slack (optionnel)
+    # slack(
+    #   message: "🚀 Noor Android déployé sur le Play Store !",
+    #   channel: "#deployments"
+    # )
+  end
+
+  desc "Build et déployer en beta (Internal Testing)"
+  lane :beta do
+    sh("flutter build appbundle --release")
+
+    upload_to_play_store(
+      track: "internal",
+      aab: "build/app/outputs/bundle/release/app-release.aab",
+      release_status: "draft",
+    )
+  end
+end
+
+# ═══════════════════════════════════════════════
+# iOS
+# ═══════════════════════════════════════════════
+platform :ios do
+
+  desc "Synchroniser les certificats (match)"
+  lane :certificates do
+    match(type: "appstore", app_identifier: "com.noor.app")
+  end
+
+  desc "Build et déployer sur TestFlight"
+  lane :beta do
+    match(type: "appstore", readonly: true)
+
+    # Build Flutter iOS
+    sh("flutter build ios --release --no-codesign")
+
+    # Build et signer avec Xcode
+    build_app(
+      workspace: "ios/Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      export_method: "app-store",
+      output_directory: "build/ios",
+      output_name: "Noor.ipa",
+    )
+
+    # Upload sur TestFlight
+    upload_to_testflight(
+      ipa: "build/ios/Noor.ipa",
+      skip_waiting_for_build_processing: true,
+    )
+  end
+
+  desc "Déployer sur l'App Store (production)"
+  lane :deploy do
+    match(type: "appstore", readonly: true)
+
+    sh("flutter build ios --release --no-codesign")
+
+    build_app(
+      workspace: "ios/Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      export_method: "app-store",
+    )
+
+    upload_to_app_store(
+      ipa: "build/ios/Noor.ipa",
+      submit_for_review: false,       # true pour soumission automatique
+      automatic_release: false,       # true pour publication automatique
+      metadata_path: "fastlane/metadata/ios",
+      screenshots_path: "fastlane/screenshots/ios",
+      skip_screenshots: true,         # passer à false après avoir préparé les screenshots
+      force: true,
+    )
+  end
+end

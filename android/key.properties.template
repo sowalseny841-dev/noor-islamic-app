@@ -1,0 +1,7 @@
+# MODÈLE - Copiez ce fichier en key.properties et remplissez vos valeurs
+# NE JAMAIS committer key.properties dans git !
+
+storePassword=VOTRE_MOT_DE_PASSE_KEYSTORE
+keyPassword=VOTRE_MOT_DE_PASSE_CLE
+keyAlias=noor-key
+storeFile=../keystore/noor-release.keystore

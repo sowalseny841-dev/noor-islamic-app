@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de Confidentialité — Noor نور</title>
+  <style>
+    :root {
+      --green: #006B3C;
+      --green-light: #00A36C;
+      --gold: #D4AF37;
+      --bg: #F5F5F0;
+      --text: #1A1A1A;
+      --text-secondary: #6B7280;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    header {
+      background: linear-gradient(135deg, #004D2A, #006B3C, #00A36C);
+      color: white;
+      padding: 48px 24px;
+      text-align: center;
+    }
+    header .logo {
+      font-size: 56px;
+      font-weight: bold;
+      font-family: serif;
+      color: #D4AF37;
+      margin-bottom: 8px;
+    }
+    header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+    header p { opacity: 0.85; font-size: 15px; }
+    .badge {
+      display: inline-block;
+      background: rgba(212,175,55,0.2);
+      border: 1px solid #D4AF37;
+      color: #D4AF37;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .update-date {
+      background: white;
+      border-left: 4px solid var(--green);
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 32px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    h2 {
+      font-size: 20px;
+      color: var(--green);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(0,107,60,0.15);
+    }
+    h3 { font-size: 16px; font-weight: 600; margin: 20px 0 8px; }
+    p { margin-bottom: 14px; font-size: 15px; }
+    ul, ol { padding-left: 20px; margin-bottom: 14px; }
+    li { font-size: 15px; margin-bottom: 6px; }
+    .highlight {
+      background: rgba(0,107,60,0.06);
+      border: 1px solid rgba(0,107,60,0.15);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .highlight.warning {
+      background: rgba(212,175,55,0.06);
+      border-color: rgba(212,175,55,0.3);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    th {
+      background: var(--green);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    tr:nth-child(even) td { background: rgba(0,107,60,0.03); }
+    .contact-card {
+      background: linear-gradient(135deg, #004D2A, #006B3C);
+      color: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-top: 40px;
+      text-align: center;
+    }
+    .contact-card h2 { color: #D4AF37; border: none; }
+    .contact-card a { color: #D4AF37; }
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      border-top: 1px solid #E5E7EB;
+    }
+    @media (max-width: 600px) {
+      header { padding: 32px 16px; }
+      header h1 { font-size: 22px; }
+      main { padding: 24px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">نور</div>
+  <h1>Noor — Politique de Confidentialité</h1>
+  <p>Application islamique pour Android et iOS</p>
+  <div class="badge">Dernière mise à jour : Avril 2026</div>
+</header>
+
+<main>
+  <div class="update-date">
+    📅 <strong>Date d'entrée en vigueur :</strong> 19 avril 2026 &nbsp;|&nbsp;
+    <strong>Version de l'application :</strong> 1.0.0
+  </div>
+
+  <p>
+    Bienvenue dans <strong>Noor (نور)</strong>, votre compagnon islamique personnel.
+    Cette politique de confidentialité explique clairement comment nous collectons,
+    utilisons et protégeons vos informations lorsque vous utilisez notre application.
+  </p>
+
+  <div class="highlight">
+    <strong>🔒 Notre engagement :</strong> Noor est conçue avec le respect de votre vie privée
+    comme priorité absolue. Nous ne vendons jamais vos données personnelles à des tiers.
+    La majorité des fonctionnalités fonctionnent entièrement hors ligne.
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>1. Informations que nous collectons</h2>
+
+  <h3>1.1 Données de localisation</h3>
+  <p>
+    Noor accède à votre position géographique <strong>uniquement</strong> pour calculer
+    les horaires de prière précis (Fajr, Dhuhr, Asr, Maghrib, Isha) selon votre lieu
+    de résidence. Cette donnée est :
+  </p>
+  <ul>
+    <li>Traitée <strong>localement sur votre appareil</strong></li>
+    <li>Stockée en local uniquement (latitude, longitude, nom de ville)</li>
+    <li>Jamais transmise à nos serveurs</li>
+    <li>Jamais partagée avec des tiers</li>
+  </ul>
+
+  <h3>1.2 Données stockées localement</h3>
+  <table>
+    <tr>
+      <th>Donnée</th>
+      <th>Utilisation</th>
+      <th>Stockage</th>
+    </tr>
+    <tr>
+      <td>Position GPS (lat/lng)</td>
+      <td>Calcul des horaires de prière</td>
+      <td>Local (SharedPreferences)</td>
+    </tr>
+    <tr>
+      <td>Progression Azkar</td>
+      <td>Suivi quotidien des azkar lus</td>
+      <td>Local (SharedPreferences)</td>
+    </tr>
+    <tr>
+      <td>Favoris Coran</td>
+      <td>Marque-pages et dernière lecture</td>
+      <td>Local (SharedPreferences)</td>
+    </tr>
+    <tr>
+      <td>Compteur Tasbih</td>
+      <td>Historique des sessions Tasbih</td>
+      <td>Local (SharedPreferences)</td>
+    </tr>
+    <tr>
+      <td>Préférences utilisateur</td>
+      <td>Thème, langue, méthode de calcul</td>
+      <td>Local (SharedPreferences)</td>
+    </tr>
+  </table>
+
+  <h3>1.3 Données non collectées</h3>
+  <div class="highlight">
+    <p>Noor <strong>ne collecte pas</strong> les données suivantes :</p>
+    <ul>
+      <li>Nom, prénom, email ou informations d'identité</li>
+      <li>Données de paiement ou financières</li>
+      <li>Contacts, messages ou e-mails</li>
+      <li>Données biométriques</li>
+      <li>Historique de navigation web</li>
+      <li>Identifiants publicitaires (IDFA/GAID)</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>2. Comment nous utilisons vos informations</h2>
+  <p>Les données collectées sont utilisées exclusivement pour :</p>
+  <ul>
+    <li>Calculer les horaires de prière précis selon votre localisation</li>
+    <li>Envoyer des rappels Azan aux heures de prière</li>
+    <li>Sauvegarder votre progression dans les Azkar quotidiens</li>
+    <li>Mémoriser vos préférences d'affichage et de lecture du Coran</li>
+    <li>Améliorer votre expérience de l'application</li>
+  </ul>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>3. Partage des données</h2>
+  <p>
+    <strong>Noor ne partage aucune donnée personnelle avec des tiers.</strong>
+    Nous n'utilisons pas de SDK publicitaires, de trackers analytiques tiers,
+    ou de services de monétisation des données.
+  </p>
+
+  <h3>Services tiers utilisés</h3>
+  <table>
+    <tr>
+      <th>Service</th>
+      <th>Utilisation</th>
+      <th>Données transmises</th>
+    </tr>
+    <tr>
+      <td>API Al-Quran Cloud</td>
+      <td>Texte du Coran et audio</td>
+      <td>Numéro de sourate/verset (aucune donnée personnelle)</td>
+    </tr>
+    <tr>
+      <td>Google Play Services / Apple</td>
+      <td>Distribution de l'application</td>
+      <td>Données standard de la plateforme</td>
+    </tr>
+  </table>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>4. Permissions requises</h2>
+
+  <h3>Android</h3>
+  <ul>
+    <li><strong>ACCESS_FINE_LOCATION</strong> — Calcul précis des horaires de prière</li>
+    <li><strong>POST_NOTIFICATIONS</strong> — Rappels Azan et Azkar</li>
+    <li><strong>SCHEDULE_EXACT_ALARM</strong> — Alarmes précises pour les prières</li>
+    <li><strong>VIBRATE</strong> — Retour haptique dans le Tasbih</li>
+    <li><strong>INTERNET</strong> — Téléchargement des récitations audio du Coran</li>
+    <li><strong>WAKE_LOCK</strong> — Maintien de l'écran lors de l'Azan</li>
+  </ul>
+
+  <h3>iOS</h3>
+  <ul>
+    <li><strong>Location (When in Use)</strong> — Horaires de prière selon votre ville</li>
+    <li><strong>Motion &amp; Fitness</strong> — Direction de la Qibla via la boussole</li>
+    <li><strong>Notifications</strong> — Rappels Azan personnalisables</li>
+    <li><strong>Background Audio</strong> — Lecture du Coran en arrière-plan</li>
+  </ul>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>5. Sécurité des données</h2>
+  <p>
+    Toutes les données de Noor sont stockées localement sur votre appareil.
+    Elles sont protégées par les mécanismes de sécurité natifs d'Android et iOS
+    (chiffrement du stockage, sandbox applicatif).
+  </p>
+  <p>
+    Nous recommandons de maintenir votre appareil à jour avec les dernières
+    mises à jour de sécurité du système d'exploitation.
+  </p>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>6. Vos droits (RGPD)</h2>
+  <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous avez le droit :</p>
+  <ul>
+    <li><strong>D'accès</strong> : consulter toutes vos données stockées dans l'application</li>
+    <li><strong>De rectification</strong> : modifier vos informations à tout moment via les Paramètres</li>
+    <li><strong>De suppression</strong> : effacer toutes vos données en désinstallant l'application</li>
+    <li><strong>De portabilité</strong> : vos données étant locales, elles sont exportables via la sauvegarde de votre appareil</li>
+    <li><strong>D'opposition</strong> : désactiver la géolocalisation à tout moment dans les paramètres de l'app ou de votre téléphone</li>
+  </ul>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>7. Données des enfants</h2>
+  <p>
+    Noor est conçue pour tous les âges et est appropriée pour les familles musulmanes.
+    Elle ne collecte aucune donnée personnelle identifiable et ne contient aucun contenu
+    inapproprié pour les mineurs. Elle est conforme aux exigences COPPA (Children's Online
+    Privacy Protection Act) et aux politiques de Google Play Famille et App Store.
+  </p>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>8. Modifications de cette politique</h2>
+  <p>
+    Nous pouvons mettre à jour cette politique de confidentialité occasionnellement.
+    Toute modification significative vous sera notifiée via une mise à jour de l'application
+    ou une notification in-app. La date de dernière modification est toujours indiquée en haut
+    de cette page.
+  </p>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>9. Applications tierces et liens</h2>
+  <p>
+    Noor peut contenir des liens vers des ressources islamiques externes (sites de Coran,
+    mosquées, etc.). Cette politique de confidentialité s'applique uniquement à l'application
+    Noor. Nous vous encourageons à lire les politiques de confidentialité de tout site
+    ou service tiers que vous visitez.
+  </p>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <h2>10. Consentement</h2>
+  <p>
+    En utilisant l'application Noor, vous acceptez les termes de cette politique de
+    confidentialité. Si vous n'acceptez pas ces termes, veuillez ne pas utiliser l'application.
+  </p>
+
+  <div class="contact-card">
+    <h2>📧 Nous Contacter</h2>
+    <p style="margin-top:12px;">
+      Pour toute question concernant cette politique de confidentialité ou
+      vos données personnelles, contactez-nous :
+    </p>
+    <p style="margin-top:12px;">
+      <strong>Email :</strong>
+      <a href="mailto:contact@noor-app.com">contact@noor-app.com</a>
+    </p>
+    <p>
+      <strong>Développeur :</strong> Équipe Noor App
+    </p>
+    <p style="margin-top:8px; opacity:0.8; font-size:13px;">
+      Nous nous engageons à répondre à toute demande dans un délai de 30 jours.
+    </p>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 Noor App — Application islamique pour Android &amp; iOS</p>
+  <p style="margin-top:4px;">بارك الله فيكم</p>
+</footer>
+
+</body>
+</html>

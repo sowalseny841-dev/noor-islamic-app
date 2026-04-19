@@ -1,0 +1,19 @@
+{
+  "names": [
+    {"number": 1, "arabic": "الله", "transliteration": "Allah", "translation": "Le Nom Suprême", "meaning": "L'Être divin, Dieu"},
+    {"number": 2, "arabic": "الرَّحْمَن", "transliteration": "Ar-Rahman", "translation": "Le Tout Miséricordieux", "meaning": "Celui dont la miséricorde embrasse toute chose"},
+    {"number": 3, "arabic": "الرَّحِيم", "transliteration": "Ar-Rahim", "translation": "Le Très Miséricordieux", "meaning": "Celui dont la miséricorde spéciale est pour les croyants"},
+    {"number": 4, "arabic": "الْمَلِك", "transliteration": "Al-Malik", "translation": "Le Roi", "meaning": "Le Souverain absolu"},
+    {"number": 5, "arabic": "الْقُدُّوس", "transliteration": "Al-Quddus", "translation": "Le Très Saint", "meaning": "Le Pur, exempt de toute imperfection"},
+    {"number": 6, "arabic": "السَّلَام", "transliteration": "As-Salam", "translation": "La Paix", "meaning": "La Source de paix et de sécurité"},
+    {"number": 7, "arabic": "الْمُؤْمِن", "transliteration": "Al-Mu'min", "translation": "Le Gardien de la Foi", "meaning": "Celui qui accorde la sécurité"},
+    {"number": 8, "arabic": "الْمُهَيْمِن", "transliteration": "Al-Muhaimin", "translation": "Le Protecteur", "meaning": "Le Dominateur, le Gardien"},
+    {"number": 9, "arabic": "الْعَزِيز", "transliteration": "Al-Aziz", "translation": "Le Tout Puissant", "meaning": "L'Invincible, le Majestueux"},
+    {"number": 10, "arabic": "الْجَبَّار", "transliteration": "Al-Jabbar", "translation": "L'Irrésistible", "meaning": "Celui qui répare et redresse"},
+    {"number": 11, "arabic": "الْمُتَكَبِّر", "transliteration": "Al-Mutakabbir", "translation": "Le Suprêmement Grand", "meaning": "Celui qui possède toute la grandeur"},
+    {"number": 12, "arabic": "الْخَالِق", "transliteration": "Al-Khaliq", "translation": "Le Créateur", "meaning": "Celui qui crée de rien"},
+    {"number": 13, "arabic": "الْبَارِئ", "transliteration": "Al-Bari'", "translation": "L'Évoluteur", "meaning": "Celui qui donne à chaque créature sa forme propre"},
+    {"number": 14, "arabic": "الْمُصَوِّر", "transliteration": "Al-Musawwir", "translation": "Le Façonneur", "meaning": "Celui qui donne forme et apparence"},
+    {"number": 15, "arabic": "الْغَفَّار", "transliteration": "Al-Ghaffar", "translation": "Le Grand Pardonneur", "meaning": "Celui qui pardonne encore et encore"}
+  ]
+}

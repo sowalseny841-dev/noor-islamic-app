@@ -1,0 +1,100 @@
+{
+  "tasbih_list": [
+    {
+      "id": 1,
+      "arabic": "سُبْحَانَ اللَّهِ",
+      "transliteration": "Subhanallah",
+      "translation": "Gloire à Allah",
+      "count": 33,
+      "benefit": "Récité 33 fois après chaque prière"
+    },
+    {
+      "id": 2,
+      "arabic": "الْحَمْدُ لِلَّهِ",
+      "transliteration": "Alhamdulillah",
+      "translation": "Toute louange est à Allah",
+      "count": 33,
+      "benefit": "Récité 33 fois après chaque prière"
+    },
+    {
+      "id": 3,
+      "arabic": "اللَّهُ أَكْبَرُ",
+      "transliteration": "Allahu Akbar",
+      "translation": "Allah est le plus Grand",
+      "count": 33,
+      "benefit": "Récité 33 fois après chaque prière"
+    },
+    {
+      "id": 4,
+      "arabic": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ",
+      "transliteration": "La ilaha illallahu wahdahu la shareeka lah",
+      "translation": "Il n'est de divinité qu'Allah, Seul sans associé",
+      "count": 100,
+      "benefit": "Équivaut à la libération de 10 esclaves (Al-Boukhâri)"
+    },
+    {
+      "id": 5,
+      "arabic": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+      "transliteration": "Subhanallahi wabihamdih",
+      "translation": "Gloire à Allah et louange à Lui",
+      "count": 100,
+      "benefit": "Efface les péchés même s'ils étaient aussi nombreux que l'écume de la mer (Muslim)"
+    },
+    {
+      "id": 6,
+      "arabic": "سُبْحَانَ اللَّهِ الْعَظِيمِ",
+      "transliteration": "Subhanallahil-AAazim",
+      "translation": "Gloire à Allah le Très Grand",
+      "count": 33,
+      "benefit": "Deux paroles légères sur la langue, lourdes dans la balance (Al-Boukhâri)"
+    },
+    {
+      "id": 7,
+      "arabic": "أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",
+      "transliteration": "Astaghfirullaha wa atubu ilayh",
+      "translation": "Je demande pardon à Allah et je me repens à Lui",
+      "count": 100,
+      "benefit": "Le Prophète ﷺ le récitait 100 fois par jour"
+    },
+    {
+      "id": 8,
+      "arabic": "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+      "transliteration": "La hawla wa la quwwata illa billah",
+      "translation": "Il n'y a de force et de puissance qu'en Allah",
+      "count": 33,
+      "benefit": "Un trésor parmi les trésors du Paradis (Al-Boukhâri)"
+    },
+    {
+      "id": 9,
+      "arabic": "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ",
+      "transliteration": "Allahumma salli AAala Muhammad",
+      "translation": "Ô Allah, envoie Tes bénédictions sur Muhammad",
+      "count": 10,
+      "benefit": "Allah lui envoie 10 bénédictions en retour (Muslim)"
+    },
+    {
+      "id": 10,
+      "arabic": "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
+      "transliteration": "Bismillahir-rahmanir-rahim",
+      "translation": "Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux",
+      "count": 21,
+      "benefit": "À réciter avant toute action importante"
+    },
+    {
+      "id": 11,
+      "arabic": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+      "transliteration": "Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina AAadhaban-nar",
+      "translation": "Notre Seigneur, accorde-nous une belle récompense en ce monde et une belle récompense dans l'au-delà, et préserve-nous du châtiment du Feu.",
+      "count": 3,
+      "benefit": "La dua la plus complète (Al-Boukhâri)"
+    },
+    {
+      "id": 12,
+      "arabic": "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+      "transliteration": "Hasbunallahu wa niAAmal-wakil",
+      "translation": "Allah nous suffit, et quel excellent garant !",
+      "count": 7,
+      "benefit": "Prononcé par Ibrahim ﷺ quand il fut jeté dans le feu"
+    }
+  ]
+}

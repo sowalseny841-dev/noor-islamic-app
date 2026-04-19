@@ -1,0 +1,185 @@
+{
+  "categories": [
+    {"id": "wakeup", "name": "Azkar du réveil", "nameAr": "أذكار الاستيقاظ", "icon": "🌅", "totalCount": 4},
+    {"id": "morning", "name": "Azkar du matin", "nameAr": "أذكار الصباح", "icon": "☀️", "totalCount": 16},
+    {"id": "evening", "name": "Azkar du soir", "nameAr": "أذكار المساء", "icon": "🌙", "totalCount": 17},
+    {"id": "sleep", "name": "Azkar avant de dormir", "nameAr": "أذكار النوم", "icon": "😴", "totalCount": 12},
+    {"id": "after_prayer", "name": "Azkar après Prière", "nameAr": "أذكار بعد الصلاة", "icon": "🤲", "totalCount": 7},
+    {"id": "after_tashahud", "name": "Azkar après Tashahud", "nameAr": "أذكار التشهد", "icon": "🧎", "totalCount": 3},
+    {"id": "after_takbeer", "name": "Duae après Takbeer", "nameAr": "دعاء الاستفتاح", "icon": "🤲", "totalCount": 5},
+    {"id": "ruku", "name": "Duae pendant Ruku", "nameAr": "دعاء الركوع", "icon": "🙇", "totalCount": 5},
+    {"id": "sujood", "name": "Duae pendant Sujood", "nameAr": "دعاء السجود", "icon": "🙏", "totalCount": 6}
+  ],
+  "azkar": [
+    {
+      "id": 1, "categoryId": "wakeup",
+      "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+      "transliteration": "Alhamdu lillahil-ladhi ahyana ba'da ma amatana wa ilayhin-nushur",
+      "translation": "Louange à Allah qui nous a rendu la vie après nous l'avoir ôtée, et vers Lui sera la résurrection.",
+      "source": "Rapporté par Al-Boukhâri",
+      "repeatCount": 1,
+      "benefit": "Réciter en se réveillant du sommeil"
+    },
+    {
+      "id": 2, "categoryId": "wakeup",
+      "arabic": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+      "transliteration": "La ilaha illallahu wahdahu la shareeka lah, lahul-mulku walahul-hamd, wahuwa AAala kulli shayin qadeer",
+      "translation": "Il n'est de divinité qu'Allah Seul sans associé; à Lui la Royauté, à Lui la louange et Il est Omnipotent.",
+      "source": "Rapporté par Al-Boukhâri",
+      "repeatCount": 1
+    },
+    {
+      "id": 3, "categoryId": "wakeup",
+      "arabic": "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، لاَ إِلَهَ إِلاَّ أَنْتَ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ",
+      "transliteration": "Subhanakal-lahumma wabihamdika, la ilaha illa anta, astaghfiruka wa atubu ilayk",
+      "translation": "Gloire et louange à Toi ô Allah, il n'y a de divinité que Toi, je Te demande pardon et je me repens à Toi.",
+      "source": "Rapporté par Abou Dawoud",
+      "repeatCount": 3
+    },
+    {
+      "id": 4, "categoryId": "wakeup",
+      "arabic": "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ",
+      "transliteration": "Asbahna wa asbahal-mulku lillahi walhamdu lillah",
+      "translation": "Nous voici au matin, et au matin le Règne appartient à Allah et la louange est à Allah.",
+      "source": "Rapporté par Abou Dawoud",
+      "repeatCount": 1
+    },
+    {
+      "id": 5, "categoryId": "morning",
+      "arabic": "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، وَلاَ إِلَـهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+      "transliteration": "Asbahna wa asbahal-mulku lillahi walhamdu lillahi, wa la ilaha illallahu wahdahu la shareeka lah, lahul-mulku walahul-hamd, wahuwa AAala kulli shayin qadeer",
+      "translation": "Nous voici au matin, et au matin le règne appartient à Allah. Toute louange est à Allah. Il n'y a de divinité qu'Allah, Seul et sans associé. À Lui appartient le Règne et à Lui revient la louange. Il est Omnipotent.",
+      "source": "Rapporté par Abou Dawoud",
+      "repeatCount": 1
+    },
+    {
+      "id": 6, "categoryId": "morning",
+      "arabic": "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ",
+      "transliteration": "Allahumma bika asbahna, wa bika amsayna, wa bika nahya, wa bika namutu, wa ilaykan-nushur",
+      "translation": "Ô Allah, c'est par Ta grâce que nous entrons dans le matin, par Ta grâce que nous entrons dans le soir, par Ta grâce que nous vivons et que nous mourons, et c'est vers Toi que sera notre résurrection.",
+      "source": "Rapporté par At-Tirmidhi",
+      "repeatCount": 1
+    },
+    {
+      "id": 7, "categoryId": "morning",
+      "arabic": "اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ",
+      "transliteration": "Allahumma anta rabbi la ilaha illa anta, khalaqtani wa ana AAabduka, wa ana AAala AAahdika wa waAAdika mastataAAtu",
+      "translation": "Ô Allah, Tu es mon Seigneur, il n'y a de divinité que Toi. Tu m'as créé et je suis Ton serviteur. Je m'engage à respecter mon alliance avec Toi et ma promesse envers Toi dans la mesure du possible.",
+      "source": "Rapporté par Al-Boukhâri",
+      "repeatCount": 1,
+      "benefit": "Syyidul-Istighfar - Le meilleur des demandes de pardon"
+    },
+    {
+      "id": 8, "categoryId": "evening",
+      "arabic": "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ للهِ، وَالْحَمْدُ للهِ، وَلاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيكَ لَهُ",
+      "transliteration": "Amsayna wa amsal-mulku lillahi, walhamdu lillahi, wa la ilaha illallahu wahdahu la shareeka lah",
+      "translation": "Nous voici au soir et au soir le règne appartient à Allah. Toute louange est à Allah, il n'y a de divinité qu'Allah, Seul et sans associé.",
+      "source": "Rapporté par Abou Dawoud",
+      "repeatCount": 1
+    },
+    {
+      "id": 9, "categoryId": "evening",
+      "arabic": "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ",
+      "transliteration": "Allahumma bika amsayna, wa bika asbahna, wa bika nahya, wa bika namutu, wa ilaykal-masir",
+      "translation": "Ô Allah, c'est par Ta grâce que nous entrons dans le soir, par Ta grâce que nous entrons dans le matin, par Ta grâce que nous vivons et que nous mourons, et c'est vers Toi que sera notre retour.",
+      "source": "Rapporté par At-Tirmidhi",
+      "repeatCount": 1
+    },
+    {
+      "id": 10, "categoryId": "after_prayer",
+      "arabic": "أَسْتَغْفِرُ اللَّهَ",
+      "transliteration": "Astaghfirullah",
+      "translation": "Je demande pardon à Allah.",
+      "source": "Rapporté par Muslim",
+      "repeatCount": 3
+    },
+    {
+      "id": 11, "categoryId": "after_prayer",
+      "arabic": "اللَّهُمَّ أَنْتَ السَّلاَمُ، وَمِنْكَ السَّلاَمُ، تَبَارَكْتَ يَا ذَا الْجَلاَلِ وَالإِكْرَامِ",
+      "transliteration": "Allahumma antas-salam, wa minkas-salam, tabarakta ya dhal-jalali wal-ikram",
+      "translation": "Ô Allah, Tu es As-Salâm (Celui dont provient la Paix), la paix vient de Toi, tu es Béni, ô Détenteur de la Majesté et de la Générosité.",
+      "source": "Rapporté par Muslim",
+      "repeatCount": 1
+    },
+    {
+      "id": 12, "categoryId": "after_prayer",
+      "arabic": "سُبْحَانَ اللَّهِ",
+      "transliteration": "Subhanallah",
+      "translation": "Gloire à Allah.",
+      "source": "Rapporté par Muslim",
+      "repeatCount": 33
+    },
+    {
+      "id": 13, "categoryId": "after_prayer",
+      "arabic": "الْحَمْدُ لِلَّهِ",
+      "transliteration": "Alhamdulillah",
+      "translation": "Toute louange est à Allah.",
+      "source": "Rapporté par Muslim",
+      "repeatCount": 33
+    },
+    {
+      "id": 14, "categoryId": "after_prayer",
+      "arabic": "اللَّهُ أَكْبَرُ",
+      "transliteration": "Allahu Akbar",
+      "translation": "Allah est le plus Grand.",
+      "source": "Rapporté par Muslim",
+      "repeatCount": 33
+    },
+    {
+      "id": 15, "categoryId": "after_prayer",
+      "arabic": "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+      "transliteration": "La ilaha illallahu wahdahu la shareeka lahu, lahul-mulku walahul-hamdu wahuwa AAala kulli shayin qadeer",
+      "translation": "Il n'est de divinité qu'Allah, Seul sans associé; à Lui la Royauté, à Lui la Louange. Il est Omnipotent.",
+      "source": "Rapporté par Muslim",
+      "repeatCount": 1
+    },
+    {
+      "id": 16, "categoryId": "ruku",
+      "arabic": "سُبْحَانَ رَبِّيَ الْعَظِيمِ",
+      "transliteration": "Subhana rabbiyal-AAazim",
+      "translation": "Gloire à mon Seigneur le Très Grand.",
+      "source": "Rapporté par Muslim",
+      "repeatCount": 3
+    },
+    {
+      "id": 17, "categoryId": "ruku",
+      "arabic": "سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ، اللَّهُمَّ اغْفِرْ لِي",
+      "transliteration": "Subhanakal-lahumma rabbana wabihamdika allahummaghfir li",
+      "translation": "Gloire et louange à Toi ô Allah notre Seigneur, ô Allah pardonne-moi.",
+      "source": "Rapporté par Al-Boukhâri",
+      "repeatCount": 1
+    },
+    {
+      "id": 18, "categoryId": "sujood",
+      "arabic": "سُبْحَانَ رَبِّيَ الأَعْلَى",
+      "transliteration": "Subhana rabbiyal-aAAla",
+      "translation": "Gloire à mon Seigneur le Très Haut.",
+      "source": "Rapporté par Muslim",
+      "repeatCount": 3
+    },
+    {
+      "id": 19, "categoryId": "sujood",
+      "arabic": "اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ دِقَّهُ وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ، وَعَلاَنِيَتَهُ وَسِرَّهُ",
+      "transliteration": "Allahummaghfir li dhanbi kullahu diqqahu wa jillahu, wa awwalahu wa akhirahu, wa AAalaniyatahu wa sirrahu",
+      "translation": "Ô Allah pardonne-moi tous mes péchés, petits et grands, premiers et derniers, publics et cachés.",
+      "source": "Rapporté par Muslim",
+      "repeatCount": 1
+    },
+    {
+      "id": 20, "categoryId": "sleep",
+      "arabic": "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
+      "transliteration": "Bismika allahumma amutu wa ahya",
+      "translation": "En Ton nom ô Allah, je meurs et je vis.",
+      "source": "Rapporté par Al-Boukhâri",
+      "repeatCount": 1
+    },
+    {
+      "id": 21, "categoryId": "sleep",
+      "arabic": "اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ",
+      "transliteration": "Allahumma qini AAadhabaka yawma tabAAathu AAibadaka",
+      "translation": "Ô Allah, préserve-moi de Ton châtiment le Jour où Tu ressusciteras Tes serviteurs.",
+      "source": "Rapporté par Abou Dawoud",
+      "repeatCount": 3
+    }
+  ]
+}

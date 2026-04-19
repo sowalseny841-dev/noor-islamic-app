@@ -1,0 +1,114 @@
+name: noor_app
+description: Noor - Application Islamique Complète
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.24.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management
+  get: ^4.6.6
+
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Navigation
+  go_router: ^13.2.0
+
+  # HTTP & API
+  dio: ^5.4.1
+  connectivity_plus: ^6.0.3
+
+  # Location & Maps
+  geolocator: ^11.0.0
+  geocoding: ^3.0.0
+  flutter_compass: ^0.7.0
+
+  # Prayer Times
+  adhan: ^1.2.0
+
+  # Notifications
+  awesome_notifications: ^0.9.3+1
+  timezone: ^0.9.4
+
+  # Audio
+  just_audio: ^0.9.39
+  audio_service: ^0.18.14
+
+  # UI Components
+  flutter_svg: ^2.0.10+1
+  cached_network_image: ^3.3.1
+  shimmer: ^3.0.0
+  lottie: ^3.1.0
+  flutter_animate: ^4.5.0
+  percent_indicator: ^4.2.3
+  smooth_page_indicator: ^1.1.0
+
+  # Fonts & Text
+  google_fonts: ^6.2.1
+  auto_size_text: ^3.0.0
+
+  # Date & Time
+  hijri: ^2.0.1
+  intl: ^0.19.0
+
+  # Permissions
+  permission_handler: ^11.3.0
+
+  # Utils
+  shared_preferences: ^2.2.3
+  path_provider: ^2.1.3
+  url_launcher: ^6.2.5
+  share_plus: ^9.0.0
+  flutter_rating_bar: ^4.0.1
+  fluttertoast: ^8.2.8
+  vibration: ^1.9.0+1
+  wakelock_plus: ^1.2.4
+  flutter_screenutil: ^5.9.1
+  gap: ^3.0.1
+  iconsax: ^0.0.8
+  country_flags: ^2.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.8
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/fonts/
+    - assets/audio/
+    - assets/json/
+    - assets/lottie/
+
+  fonts:
+    - family: Amiri
+      fonts:
+        - asset: assets/fonts/Amiri-Regular.ttf
+        - asset: assets/fonts/Amiri-Bold.ttf
+          weight: 700
+    - family: ScheherazadeNew
+      fonts:
+        - asset: assets/fonts/ScheherazadeNew-Regular.ttf
+        - asset: assets/fonts/ScheherazadeNew-Bold.ttf
+          weight: 700
+    - family: NotoNaskhArabic
+      fonts:
+        - asset: assets/fonts/NotoNaskhArabic-Regular.ttf
+        - asset: assets/fonts/NotoNaskhArabic-Bold.ttf
+          weight: 700

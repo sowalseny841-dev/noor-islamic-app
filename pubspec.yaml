@@ -61,7 +61,7 @@ dependencies:
 
   # Date & Time
   # hijri: implémenté nativement dans HijriUtils (aucun package nécessaire)
-  intl: ^0.19.0
+  intl: ^0.20.0
 
   # Permissions
   permission_handler: ^11.3.0

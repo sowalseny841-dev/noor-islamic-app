@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:adhan/adhan.dart';
+import 'package:adhan_dart/adhan_dart.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/utils/prayer_time_utils.dart';

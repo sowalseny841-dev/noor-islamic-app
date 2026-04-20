@@ -1,19 +1,64 @@
-import 'package:hijri/hijri_calendar.dart';
+class HijriDate {
+  final int hYear;
+  final int hMonth;
+  final int hDay;
+
+  const HijriDate({required this.hYear, required this.hMonth, required this.hDay});
+
+  factory HijriDate.now() => HijriDate.fromGregorian(DateTime.now());
+
+  factory HijriDate.fromDate(DateTime date) => HijriDate.fromGregorian(date);
+
+  factory HijriDate.fromGregorian(DateTime date) {
+    final jd = _gregorianToJD(date.year, date.month, date.day);
+    return _jdToHijri(jd);
+  }
+
+  static int _gregorianToJD(int y, int m, int d) {
+    if (m <= 2) {
+      y--;
+      m += 12;
+    }
+    final a = (y / 100).floor();
+    final b = 2 - a + (a / 4).floor();
+    return (365.25 * (y + 4716)).floor() +
+        (30.6001 * (m + 1)).floor() +
+        d +
+        b -
+        1524;
+  }
+
+  static HijriDate _jdToHijri(int jd) {
+    int l = jd - 1948440 + 10632;
+    final n = ((l - 1) / 10631).floor();
+    l = l - 10631 * n + 354;
+    final j = ((10985 - l) / 5316).floor() * ((50 * l) / 17719).floor() +
+        (l / 5670).floor() * ((43 * l) / 15238).floor();
+    l = l -
+        ((30 - j) / 15).floor() * ((17719 * j) / 50).floor() -
+        (j / 16).floor() * ((15238 * j) / 43).floor() +
+        29;
+    final year = 30 * n + j - 30;
+    final month = ((24 * l) / 709).floor();
+    final day = l - ((709 * month) / 24).floor();
+    return HijriDate(hYear: year, hMonth: month, hDay: day);
+  }
+}
 
 class HijriUtils {
   static String getTodayHijri() {
-    final hijri = HijriCalendar.now();
-    return '${hijri.hDay} ${_getMonthName(hijri.hMonth)}, ${hijri.hYear} AH';
+    final h = HijriDate.now();
+    return '${h.hDay} ${_getMonthName(h.hMonth)}, ${h.hYear} AH';
   }
 
   static String getHijriDate(DateTime date) {
-    final hijri = HijriCalendar.fromDate(date);
-    return '${hijri.hDay} ${_getMonthName(hijri.hMonth)}, ${hijri.hYear}';
+    final h = HijriDate.fromGregorian(date);
+    return '${h.hDay} ${_getMonthName(h.hMonth)}, ${h.hYear}';
   }
 
   static String getHijriMonthYear() {
-    final hijri = HijriCalendar.now();
-    return '${_getMonthName(hijri.hMonth)} ${hijri.hYear} AH';
+    final h = HijriDate.now();
+    return '${_getMonthName(h.hMonth)} ${h.hYear} AH';
   }
 
   static String _getMonthName(int month) {

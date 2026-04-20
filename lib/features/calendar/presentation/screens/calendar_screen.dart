@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
@@ -108,7 +107,7 @@ class _CalendarScreenState extends State<CalendarScreen>
         DateTime(_selectedDate.year, _selectedDate.month, 1);
     final firstWeekday = firstDayOfMonth.weekday % 7;
     final hijriMonth =
-        HijriCalendar.fromDate(DateTime(_selectedDate.year, _selectedDate.month));
+        HijriDate.fromGregorian(DateTime(_selectedDate.year, _selectedDate.month));
 
     return Container(
       decoration: BoxDecoration(
@@ -219,7 +218,7 @@ class _CalendarScreenState extends State<CalendarScreen>
                 final day = i - firstWeekday + 1;
                 final date = DateTime(
                     _selectedDate.year, _selectedDate.month, day);
-                final hijri = HijriCalendar.fromDate(date);
+                final hijri = HijriDate.fromGregorian(date);
                 final isToday = date.day == now.day &&
                     date.month == now.month &&
                     date.year == now.year;
@@ -324,7 +323,7 @@ class _CalendarScreenState extends State<CalendarScreen>
   }
 
   Widget _buildHolidaysTab(bool isDark) {
-    final hijri = HijriCalendar.now();
+    final hijri = HijriDate.now();
     final holidays = HijriUtils.getIslamicHolidays(hijri.hYear);
 
     return ListView.builder(
@@ -346,7 +345,7 @@ class _CalendarScreenState extends State<CalendarScreen>
   }
 
   Widget _buildDateConverter(bool isDark) {
-    final hijri = HijriCalendar.fromDate(_selectedDate);
+    final hijri = HijriDate.fromGregorian(_selectedDate);
     final gregorianStr =
         DateFormat('MMMM dd, yyyy', 'fr').format(_selectedDate);
     final islamicStr =

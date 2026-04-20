@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:adhan_dart/adhan_dart.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide TextDirection;
 import 'package:intl/intl.dart';
 import '../../../../core/utils/prayer_time_utils.dart';
 import '../../../../shared/models/prayer_model.dart';

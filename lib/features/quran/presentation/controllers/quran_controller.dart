@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide TextDirection;
 import '../../../../shared/services/storage_service.dart';
 
 class QuranController extends GetxController {

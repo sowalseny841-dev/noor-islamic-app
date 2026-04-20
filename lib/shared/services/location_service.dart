@@ -1,6 +1,6 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide TextDirection;
 
 class LocationService extends GetxService {
   Future<LocationService> init() async => this;

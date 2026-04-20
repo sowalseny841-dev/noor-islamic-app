@@ -9,27 +9,26 @@ class PrayerTimeUtils {
   }) {
     final coords = Coordinates(latitude, longitude);
     final params = _getCalculationParameters(method);
-    final dateComponents = DateComponents.from(DateTime.now());
-    return PrayerTimes(coords, dateComponents, params);
+    return PrayerTimes(coords, DateTime.now(), params);
   }
 
   static CalculationParameters _getCalculationParameters(String method) {
     switch (method) {
       case 'France':
       case 'UOIF':
-        return CalculationMethod.moon_sighting_committee.getParameters();
+        return CalculationMethodParameters.moonSightingCommittee();
       case 'MuslimWorldLeague':
-        return CalculationMethod.muslim_world_league.getParameters();
+        return CalculationMethodParameters.muslimWorldLeague();
       case 'Egyptian':
-        return CalculationMethod.egyptian.getParameters();
+        return CalculationMethodParameters.egyptian();
       case 'Karachi':
-        return CalculationMethod.karachi.getParameters();
+        return CalculationMethodParameters.karachi();
       case 'NorthAmerica':
-        return CalculationMethod.north_america.getParameters();
+        return CalculationMethodParameters.northAmerica();
       case 'Dubai':
-        return CalculationMethod.dubai.getParameters();
+        return CalculationMethodParameters.dubai();
       default:
-        return CalculationMethod.muslim_world_league.getParameters();
+        return CalculationMethodParameters.muslimWorldLeague();
     }
   }
 

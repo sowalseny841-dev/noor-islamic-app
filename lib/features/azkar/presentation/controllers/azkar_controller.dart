@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide TextDirection;
 import '../../../../shared/models/azkar_model.dart';
 import '../../../../shared/services/storage_service.dart';
 

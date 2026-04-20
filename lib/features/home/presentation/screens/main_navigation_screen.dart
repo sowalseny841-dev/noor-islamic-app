@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide TextDirection;
 import '../../../../core/theme/app_colors.dart';
 import '../controllers/home_controller.dart';
 import 'home_screen.dart';

@@ -12,7 +12,7 @@ on:
         default: '1.0.0'
 
 env:
-  FLUTTER_VERSION: '3.24.0'
+  FLUTTER_VERSION: '3.29.0'
   JAVA_VERSION: '17'
 
 jobs:
@@ -44,19 +44,28 @@ jobs:
         run: flutter pub get
 
       - name: Decode Keystore
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/noor-release.keystore
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 --decode > android/app/noor-release.keystore
+          fi
 
       - name: Create key.properties
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
-          cat > android/key.properties << EOF
-          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
-          keyPassword=${{ secrets.KEY_PASSWORD }}
-          keyAlias=${{ secrets.KEY_ALIAS }}
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            cat > android/key.properties << EOF
+          storePassword=$KEYSTORE_PASSWORD
+          keyPassword=$KEY_PASSWORD
+          keyAlias=$KEY_ALIAS
           storeFile=noor-release.keystore
           EOF
+          fi
 
       - name: Build AAB (Release)
         run: |

@@ -1,3 +1,4 @@
+import 'dart:ui' show TextDirection;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide TextDirection;
 import 'package:flutter_animate/flutter_animate.dart';

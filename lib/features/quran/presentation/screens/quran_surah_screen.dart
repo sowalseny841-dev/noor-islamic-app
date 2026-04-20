@@ -1,3 +1,4 @@
+import 'dart:ui' show TextDirection;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide TextDirection;
 import '../../../../core/theme/app_colors.dart';

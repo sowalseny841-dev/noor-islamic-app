@@ -9,14 +9,19 @@ class PrayerTimeUtils {
   }) {
     final coords = Coordinates(latitude, longitude);
     final params = _getCalculationParameters(method);
-    return PrayerTimes(coords, DateTime.now(), params);
+    return PrayerTimes(
+      coordinates: coords,
+      date: DateTime.now(),
+      calculationParameters: params,
+      precision: true,
+    );
   }
 
   static CalculationParameters _getCalculationParameters(String method) {
     switch (method) {
       case 'France':
       case 'UOIF':
-        return CalculationMethodParameters.moonSightingCommittee();
+        return CalculationMethodParameters.moonsightingCommittee();
       case 'MuslimWorldLeague':
         return CalculationMethodParameters.muslimWorldLeague();
       case 'Egyptian':

@@ -80,6 +80,9 @@ dependencies:
   iconsax: ^0.0.8
   country_flags: ^3.0.0
 
+dependency_overrides:
+  intl: ^0.20.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

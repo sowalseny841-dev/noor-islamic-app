@@ -1,0 +1,8 @@
+🌟 Première version de Noor !
+
+• Horaires des prières avec notifications Adhan
+• Lecture du Coran avec audio et traduction
+• Azkar du matin et du soir
+• Tasbih numérique
+• Direction de la Qibla
+• Calendrier islamique (Hijri/Grégorien)

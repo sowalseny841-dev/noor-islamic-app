@@ -1,0 +1,8 @@
+🌟 First release of Noor!
+
+• Prayer times with Adhan notifications
+• Quran reading with audio and translation
+• Morning and evening Azkar
+• Digital Tasbih
+• Qibla direction
+• Islamic calendar (Hijri/Gregorian)

@@ -1,0 +1,43 @@
+Noor (نور) is your complete Islamic companion, designed to support your daily Islamic practice.
+
+🕌 PRAYER TIMES
+• Accurate calculation of 5 daily prayers based on your GPS location
+• Customizable Adhan notifications for each prayer
+• Supports all calculation methods (ISNA, Muslim World League, Egyptian, etc.)
+• Countdown to the next prayer
+
+📖 HOLY QURAN
+• Complete Quran reading with tajweed
+• Audio recitation by renowned reciters
+• English translation
+• Bookmarks and reading tracker
+
+📿 AZKAR & DUA
+• Morning and evening Azkar
+• Post-prayer supplications
+• Automatic counter
+• Complete Dua collection
+
+🧮 DIGITAL TASBIH
+• Tasbih counter with vibration feedback
+• Auto-save your progress
+• Customizable dhikr
+
+🧭 QIBLA DIRECTION
+• Real-time Qibla direction
+• Precise compass with calibration
+• Works offline
+
+📅 ISLAMIC CALENDAR
+• Hijri/Gregorian date converter
+• Important Islamic holidays
+• Interactive monthly calendar
+
+✨ FEATURES
+• Elegant Arabic and English interface
+• Dark and light mode
+• Works offline
+• Lightweight and fast
+• No ads
+
+بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم

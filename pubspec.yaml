@@ -82,6 +82,7 @@ dependencies:
 
 dependency_overrides:
   intl: ^0.20.0
+  device_info_plus: ^10.1.2
 
 dev_dependencies:
   flutter_test:

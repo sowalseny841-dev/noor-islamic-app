@@ -49,7 +49,7 @@ class PrayerTimeUtils {
 
   static String getNextPrayerCountdown(PrayerTimes prayerTimes) {
     final now = DateTime.now();
-    final nextPrayer = prayerTimes.nextPrayer();
+    final nextPrayer = prayerTimes.nextPrayer(date: now);
     final nextTime = prayerTimes.timeForPrayer(nextPrayer);
     if (nextTime == null) return '';
     final diff = nextTime.difference(now);
@@ -60,7 +60,7 @@ class PrayerTimeUtils {
   }
 
   static Prayer getCurrentPrayer(PrayerTimes prayerTimes) {
-    return prayerTimes.currentPrayer();
+    return prayerTimes.currentPrayer(date: DateTime.now());
   }
 
   static String prayerToString(Prayer prayer) {

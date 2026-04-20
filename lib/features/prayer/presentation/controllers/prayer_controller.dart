@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:adhan_dart/adhan_dart.dart';
-import 'package:get/get.dart' hide TextDirection;
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/utils/prayer_time_utils.dart';
 import '../../../../shared/models/prayer_model.dart';
@@ -107,7 +107,7 @@ class PrayerController extends GetxController {
   void _updateCurrentPrayer() {
     if (_prayerTimes == null) return;
     final current = PrayerTimeUtils.getCurrentPrayer(_prayerTimes!);
-    final next = _prayerTimes!.nextPrayer();
+    final next = _prayerTimes!.nextPrayer(date: DateTime.now());
     currentPrayerName.value = PrayerTimeUtils.prayerToString(current);
     nextPrayerName.value = PrayerTimeUtils.prayerToString(next);
     nextPrayerCountdown.value =

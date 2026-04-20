@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart' hide TextDirection;
+import 'package:get/get.dart';
 import '../../../../shared/services/storage_service.dart';
 
 class TasbihItem {

@@ -1,4 +1,4 @@
-import 'package:get/get.dart' hide TextDirection;
+import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   final RxInt currentIndex = 0.obs;

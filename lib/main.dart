@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart' hide TextDirection;
+import 'package:get/get.dart';
 import 'shared/services/storage_service.dart';
 import 'shared/services/location_service.dart';
 import 'shared/services/notification_service.dart';

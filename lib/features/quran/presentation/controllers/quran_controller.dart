@@ -16,6 +16,19 @@ class QuranController extends GetxController {
   final RxDouble fontSize = 24.0.obs;
   final RxString selectedReciter = 'Mishary Rashid Alafasy'.obs;
   final RxList<int> bookmarks = <int>[].obs;
+  final RxInt currentPage = 1.obs;
+
+  final List<String> reciters = [
+    'Mishary Rashid Alafasy',
+    'Abdul Basit Abdul Samad',
+    'Maher Al-Muaiqly',
+    'Saud Al-Shuraim',
+    'Abu Bakr Al-Shatri',
+  ];
+
+  void selectReciter(String reciter) {
+    selectedReciter.value = reciter;
+  }
 
   final RxList<Map<String, dynamic>> surahs = <Map<String, dynamic>>[].obs;
   final RxBool isLoadingSurahs = true.obs;

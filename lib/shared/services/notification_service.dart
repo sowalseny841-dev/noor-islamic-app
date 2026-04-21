@@ -8,35 +8,35 @@ class NotificationService extends GetxService {
   static const String azkarChannelKey = 'azkar_channel';
 
   Future<NotificationService> init() async {
-    await AwesomeNotifications().initialize(
-      null,
-      [
-        NotificationChannel(
-          channelKey: prayerChannelKey,
-          channelName: 'Rappels de prière',
-          channelDescription: 'Notifications pour les horaires de prière',
-          defaultColor: AppColors.primary,
-          importance: NotificationImportance.High,
-          channelShowBadge: true,
-          playSound: true,
-          soundSource: 'resource://raw/adhan',
-        ),
-        NotificationChannel(
-          channelKey: azkarChannelKey,
-          channelName: 'Azkar quotidiens',
-          channelDescription: 'Rappels pour les azkar du matin et du soir',
-          defaultColor: AppColors.primary,
-          importance: NotificationImportance.Default,
-          channelShowBadge: true,
-        ),
-      ],
-    );
+    try {
+      await AwesomeNotifications().initialize(
+        null,
+        [
+          NotificationChannel(
+            channelKey: prayerChannelKey,
+            channelName: 'Rappels de prière',
+            channelDescription: 'Notifications pour les horaires de prière',
+            defaultColor: AppColors.primary,
+            importance: NotificationImportance.High,
+            channelShowBadge: true,
+            playSound: true,
+          ),
+          NotificationChannel(
+            channelKey: azkarChannelKey,
+            channelName: 'Azkar quotidiens',
+            channelDescription: 'Rappels pour les azkar du matin et du soir',
+            defaultColor: AppColors.primary,
+            importance: NotificationImportance.Default,
+            channelShowBadge: true,
+          ),
+        ],
+      );
 
-    await AwesomeNotifications().isNotificationAllowed().then((allowed) async {
+      final allowed = await AwesomeNotifications().isNotificationAllowed();
       if (!allowed) {
         await AwesomeNotifications().requestPermissionToSendNotifications();
       }
-    });
+    } catch (_) {}
 
     return this;
   }

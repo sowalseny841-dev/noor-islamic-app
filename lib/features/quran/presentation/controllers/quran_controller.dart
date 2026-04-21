@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../../../shared/services/storage_service.dart';
 
 class QuranController extends GetxController {
@@ -37,6 +41,8 @@ class QuranController extends GetxController {
   final RxList<Map<String, dynamic>> currentAyahs = <Map<String, dynamic>>[].obs;
   final RxBool isLoadingAyahs = false.obs;
   final RxInt loadedSurahNumber = 0.obs;
+  final RxBool isCurrentSurahCached = false.obs;
+  final RxBool isSaving = false.obs;
 
   @override
   void onInit() {
@@ -69,10 +75,38 @@ class QuranController extends GetxController {
     }
   }
 
+  Future<File> _cacheFile(int surahNumber) async {
+    final dir = await getApplicationDocumentsDirectory();
+    return File('${dir.path}/quran_surah_$surahNumber.json');
+  }
+
+  Future<bool> isSurahCached(int surahNumber) async {
+    final file = await _cacheFile(surahNumber);
+    return file.existsSync();
+  }
+
   Future<void> fetchSurahAyahs(int surahNumber) async {
     if (loadedSurahNumber.value == surahNumber && currentAyahs.isNotEmpty) return;
     isLoadingAyahs.value = true;
     currentAyahs.clear();
+
+    // Check cache first
+    final cached = await isSurahCached(surahNumber);
+    isCurrentSurahCached.value = cached;
+
+    if (cached) {
+      try {
+        final file = await _cacheFile(surahNumber);
+        final data = jsonDecode(await file.readAsString()) as List;
+        currentAyahs.value = data.cast<Map<String, dynamic>>();
+        loadedSurahNumber.value = surahNumber;
+        isLoadingAyahs.value = false;
+        return;
+      } catch (_) {
+        // cache corrupted, fetch from network
+      }
+    }
+
     try {
       final response = await _dio.get(
         '/surah/$surahNumber/editions/quran-uthmani,fr.hamidullah',
@@ -95,6 +129,37 @@ class QuranController extends GetxController {
     } finally {
       isLoadingAyahs.value = false;
     }
+  }
+
+  Future<void> saveSurahOffline(int surahNumber) async {
+    if (currentAyahs.isEmpty) return;
+    isSaving.value = true;
+    try {
+      final file = await _cacheFile(surahNumber);
+      await file.writeAsString(jsonEncode(currentAyahs.toList()));
+      isCurrentSurahCached.value = true;
+      Get.snackbar(
+        'Sauvegardé',
+        'Sourate enregistrée pour la lecture hors-ligne',
+        backgroundColor: Colors.green.shade600,
+        colorText: Colors.white,
+        duration: const Duration(seconds: 2),
+      );
+    } catch (_) {
+      Get.snackbar('Erreur', 'Impossible de sauvegarder.');
+    } finally {
+      isSaving.value = false;
+    }
+  }
+
+  Future<void> deleteSurahCache(int surahNumber) async {
+    try {
+      final file = await _cacheFile(surahNumber);
+      if (file.existsSync()) await file.delete();
+      isCurrentSurahCached.value = false;
+      Get.snackbar('Supprimé', 'Sourate retirée du cache hors-ligne.',
+          duration: const Duration(seconds: 2));
+    } catch (_) {}
   }
 
   void toggleBookmark(int ayahNumber) {

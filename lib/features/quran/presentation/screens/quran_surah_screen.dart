@@ -23,6 +23,28 @@ class _QuranSurahScreenState extends State<QuranSurahScreen> {
     _controller.fetchSurahAyahs(widget.surah['number'] as int);
   }
 
+  void _onSavePressed(bool alreadyCached) {
+    final surahNumber = widget.surah['number'] as int;
+    if (alreadyCached) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Supprimer le cache ?'),
+          content: Text('Retirer "${widget.surah['name']}" de la lecture hors-ligne ?'),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Annuler')),
+            TextButton(
+              onPressed: () { Navigator.pop(ctx); _controller.deleteSurahCache(surahNumber); },
+              child: const Text('Supprimer', style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        ),
+      );
+    } else {
+      _controller.saveSurahOffline(surahNumber);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -61,16 +83,27 @@ class _QuranSurahScreenState extends State<QuranSurahScreen> {
                 icon: Icon(Icons.headset_rounded,
                     color: _controller.isPlaying.value
                         ? AppColors.primary
-                        : (isDark
-                            ? AppColors.white
-                            : AppColors.textPrimaryLight)),
+                        : (isDark ? AppColors.white : AppColors.textPrimaryLight)),
                 onPressed: _controller.togglePlayPause,
               )),
-          IconButton(
-            icon: Icon(Icons.more_horiz_rounded,
-                color: isDark ? AppColors.white : AppColors.textPrimaryLight),
-            onPressed: () {},
-          ),
+          Obx(() {
+            final cached = _controller.isCurrentSurahCached.value;
+            final saving = _controller.isSaving.value;
+            if (saving) {
+              return const Padding(
+                padding: EdgeInsets.all(14),
+                child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.gold)),
+              );
+            }
+            return IconButton(
+              icon: Icon(
+                cached ? Icons.download_done_rounded : Icons.download_outlined,
+                color: cached ? AppColors.gold : (isDark ? AppColors.white : AppColors.textPrimaryLight),
+              ),
+              tooltip: cached ? 'Supprimer du cache' : 'Sauvegarder hors-ligne',
+              onPressed: () => _onSavePressed(cached),
+            );
+          }),
         ],
       ),
       body: Column(

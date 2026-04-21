@@ -66,11 +66,17 @@ class AppPages {
     GetPage(name: '/settings', page: () => const SettingsScreen()),
     GetPage(name: '/qibla', page: () => const QiblaScreen()),
     GetPage(name: '/quran', page: () => const QuranScreen()),
-    GetPage(name: '/quran/surah', page: () => const QuranSurahScreen()),
+    GetPage(name: '/quran/surah', page: () => QuranSurahScreen(surah: Get.arguments as Map<String, dynamic>)),
     GetPage(name: '/prayer', page: () => const PrayerScreen()),
-    GetPage(name: '/azan', page: () => const AzanScreen()),
-    GetPage(name: '/azkar', page: () => const AzkarListScreen()),
-    GetPage(name: '/azkar/detail', page: () => const AzkarDetailScreen()),
+    GetPage(name: '/azan', page: () {
+      final args = Get.arguments as Map<String, dynamic>;
+      return AzanScreen(
+        prayerName: args['prayerName'] as String,
+        prayerTime: args['prayerTime'] as String,
+        prayerColor: args['prayerColor'] as Color,
+      );
+    }),
+    GetPage(name: '/azkar/detail', page: () => AzkarDetailScreen(categoryId: Get.arguments as String)),
     GetPage(name: '/tasbih', page: () => const TasbihScreen()),
     GetPage(name: '/calendar', page: () => const CalendarScreen()),
     GetPage(name: '/ummah', page: () => const UmmahScreen()),

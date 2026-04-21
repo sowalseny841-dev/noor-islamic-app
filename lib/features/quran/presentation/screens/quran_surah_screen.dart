@@ -4,53 +4,27 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../controllers/quran_controller.dart';
 
-class QuranSurahScreen extends StatelessWidget {
+class QuranSurahScreen extends StatefulWidget {
   final Map<String, dynamic> surah;
 
   const QuranSurahScreen({super.key, required this.surah});
 
-  // Sample ayahs for Al-Fatihah (surah 1)
-  static const List<Map<String, String>> _fatihahAyahs = [
-    {
-      'number': '1',
-      'arabic': 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-      'translation': 'Au nom d\'Allah, le Tout Miséricordieux, le Très Miséricordieux',
-    },
-    {
-      'number': '2',
-      'arabic': 'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ',
-      'translation': 'Louange à Allah, Seigneur de l\'univers',
-    },
-    {
-      'number': '3',
-      'arabic': 'الرَّحْمَٰنِ الرَّحِيمِ',
-      'translation': 'Le Tout Miséricordieux, le Très Miséricordieux',
-    },
-    {
-      'number': '4',
-      'arabic': 'مَالِكِ يَوْمِ الدِّينِ',
-      'translation': 'Maître du Jour de la rétribution.',
-    },
-    {
-      'number': '5',
-      'arabic': 'إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ',
-      'translation': 'C\'est Toi [Seul] que nous adorons, et c\'est Toi [Seul] dont nous implorons le secours.',
-    },
-    {
-      'number': '6',
-      'arabic': 'اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ',
-      'translation': 'Guide-nous dans le droit chemin',
-    },
-    {
-      'number': '7',
-      'arabic': 'صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ',
-      'translation': 'le chemin de ceux que Tu as comblés de faveurs, non pas de ceux qui ont encouru Ta colère, ni des égarés.',
-    },
-  ];
+  @override
+  State<QuranSurahScreen> createState() => _QuranSurahScreenState();
+}
+
+class _QuranSurahScreenState extends State<QuranSurahScreen> {
+  late final QuranController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = Get.find<QuranController>();
+    _controller.fetchSurahAyahs(widget.surah['number'] as int);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<QuranController>();
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -68,30 +42,29 @@ class QuranSurahScreen extends StatelessWidget {
         ),
         title: Column(
           children: [
-            Text(surah['name'],
-                style: AppTextStyles.heading3(
-                    color: isDark
-                        ? AppColors.white
-                        : AppColors.textPrimaryLight)),
-            Text('Juz ${surah['juz']}, Page1',
-                style: AppTextStyles.bodySmall()),
+            Text(
+              widget.surah['name'] as String,
+              style: AppTextStyles.heading3(
+                  color: isDark
+                      ? AppColors.white
+                      : AppColors.textPrimaryLight),
+            ),
+            Text(
+              '${widget.surah['verses']} versets · ${widget.surah['type']}',
+              style: AppTextStyles.bodySmall(),
+            ),
           ],
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(Icons.bookmark_border_rounded,
-                color: isDark ? AppColors.white : AppColors.textPrimaryLight),
-            onPressed: () => controller.toggleBookmark(1),
-          ),
           Obx(() => IconButton(
                 icon: Icon(Icons.headset_rounded,
-                    color: controller.isPlaying.value
+                    color: _controller.isPlaying.value
                         ? AppColors.primary
                         : (isDark
                             ? AppColors.white
                             : AppColors.textPrimaryLight)),
-                onPressed: controller.togglePlayPause,
+                onPressed: _controller.togglePlayPause,
               )),
           IconButton(
             icon: Icon(Icons.more_horiz_rounded,
@@ -103,64 +76,91 @@ class QuranSurahScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.all(20),
-              children: [
-                // Surah header
-                Center(
+            child: Obx(() {
+              if (_controller.isLoadingAyahs.value) {
+                return const Center(
+                  child: CircularProgressIndicator(color: AppColors.primary),
+                );
+              }
+              if (_controller.currentAyahs.isEmpty) {
+                return Center(
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40, vertical: 10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: AppColors.gold.withOpacity(0.5), width: 2),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Text(
-                          'سُورَةُ ${surah['nameAr']}',
-                          style: AppTextStyles.arabicLarge(
-                              color: isDark
-                                  ? AppColors.gold
-                                  : AppColors.primaryDark),
-                        ),
-                      ),
+                      const Icon(Icons.wifi_off_rounded,
+                          size: 48, color: AppColors.primary),
                       const SizedBox(height: 12),
-                      Text('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-                          style: AppTextStyles.arabicMedium(
-                              color: isDark
-                                  ? AppColors.textPrimaryDark
-                                  : AppColors.textPrimaryLight)),
+                      Text('Impossible de charger les versets',
+                          style: AppTextStyles.bodyMedium()),
+                      const SizedBox(height: 8),
+                      TextButton(
+                        onPressed: () => _controller.fetchSurahAyahs(
+                            widget.surah['number'] as int),
+                        child: const Text('Réessayer'),
+                      ),
                     ],
                   ),
-                ),
-                const SizedBox(height: 24),
-                // Ayahs
-                ..._fatihahAyahs.map((ayah) => _AyahTile(
-                      ayah: ayah,
-                      isDark: isDark,
-                      controller: controller,
-                    )),
-              ],
-            ),
+                );
+              }
+              return ListView(
+                padding: const EdgeInsets.all(20),
+                children: [
+                  Center(
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 10),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: AppColors.gold.withValues(alpha: 0.5),
+                                width: 2),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            widget.surah['nameAr'] as String,
+                            style: AppTextStyles.arabicLarge(
+                                color: isDark
+                                    ? AppColors.gold
+                                    : AppColors.primaryDark),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        if ((widget.surah['number'] as int) != 9)
+                          Text(
+                            'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+                            style: AppTextStyles.arabicMedium(
+                                color: isDark
+                                    ? AppColors.textPrimaryDark
+                                    : AppColors.textPrimaryLight),
+                          ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  ..._controller.currentAyahs.map((ayah) => _AyahTile(
+                        ayah: ayah,
+                        isDark: isDark,
+                        controller: _controller,
+                      )),
+                ],
+              );
+            }),
           ),
-          // Audio controls
-          _buildAudioControls(context, controller, isDark),
+          _buildAudioControls(isDark),
         ],
       ),
     );
   }
 
-  Widget _buildAudioControls(
-      BuildContext context, QuranController controller, bool isDark) {
+  Widget _buildAudioControls(bool isDark) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: isDark ? AppColors.surfaceDark : AppColors.white,
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withOpacity(0.06),
+              color: Colors.black.withValues(alpha: 0.06),
               blurRadius: 10,
               offset: const Offset(0, -2))
         ],
@@ -170,18 +170,16 @@ class QuranSurahScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              '1.0x',
-              style: AppTextStyles.bodyMedium(color: AppColors.primary)
-                  .copyWith(fontWeight: FontWeight.w600),
-            ),
+            Text('1.0x',
+                style: AppTextStyles.bodyMedium(color: AppColors.primary)
+                    .copyWith(fontWeight: FontWeight.w600)),
             IconButton(
               icon: const Icon(Icons.replay_10_rounded),
               onPressed: () {},
               color: isDark ? AppColors.white : AppColors.textPrimaryLight,
             ),
             GestureDetector(
-              onTap: controller.togglePlayPause,
+              onTap: _controller.togglePlayPause,
               child: Container(
                 width: 54,
                 height: 54,
@@ -190,14 +188,14 @@ class QuranSurahScreen extends StatelessWidget {
                   gradient: AppColors.primaryGradient,
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primary.withOpacity(0.3),
+                      color: AppColors.primary.withValues(alpha: 0.3),
                       blurRadius: 12,
                       spreadRadius: 2,
                     ),
                   ],
                 ),
                 child: Obx(() => Icon(
-                      controller.isPlaying.value
+                      _controller.isPlaying.value
                           ? Icons.pause_rounded
                           : Icons.play_arrow_rounded,
                       color: Colors.white,
@@ -223,7 +221,7 @@ class QuranSurahScreen extends StatelessWidget {
 }
 
 class _AyahTile extends StatelessWidget {
-  final Map<String, String> ayah;
+  final Map<String, dynamic> ayah;
   final bool isDark;
   final QuranController controller;
 
@@ -236,12 +234,10 @@ class _AyahTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.cardDark
-            : const Color(0xFFFFFDF5),
+        color: isDark ? AppColors.cardDark : const Color(0xFFFFFDF5),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-            color: AppColors.gold.withOpacity(0.15), width: 1),
+        border:
+            Border.all(color: AppColors.gold.withValues(alpha: 0.15), width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -249,7 +245,6 @@ class _AyahTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Ayah number badge
               Container(
                 width: 32,
                 height: 32,
@@ -259,7 +254,7 @@ class _AyahTile extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    ayah['number']!,
+                    ayah['number'] as String,
                     style: AppTextStyles.bodySmall(color: AppColors.gold)
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
@@ -274,22 +269,15 @@ class _AyahTile extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          // Arabic
           Text(
-            ayah['arabic']!,
-            style: controller.showTranslation.value
-                ? AppTextStyles.quranVerse(
-                    color: isDark
-                        ? AppColors.textPrimaryDark
-                        : AppColors.textPrimaryLight)
-                : AppTextStyles.quranVerse(
-                    color: isDark
-                        ? AppColors.textPrimaryDark
-                        : AppColors.textPrimaryLight),
+            ayah['arabic'] as String,
+            style: AppTextStyles.quranVerse(
+                color: isDark
+                    ? AppColors.textPrimaryDark
+                    : AppColors.textPrimaryLight),
             textAlign: TextAlign.right,
             textDirection: TextDirection.rtl,
           ),
-          // Translation
           Obx(() {
             if (!controller.showTranslation.value) {
               return const SizedBox.shrink();
@@ -299,7 +287,7 @@ class _AyahTile extends StatelessWidget {
               children: [
                 const SizedBox(height: 12),
                 Text(
-                  ayah['translation']!,
+                  ayah['translation'] as String,
                   style: AppTextStyles.bodyMedium(
                     color: isDark
                         ? AppColors.textSecondaryDark

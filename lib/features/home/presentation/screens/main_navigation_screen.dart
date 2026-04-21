@@ -4,10 +4,6 @@ import '../../../../core/theme/app_colors.dart';
 import '../controllers/home_controller.dart';
 import 'home_screen.dart';
 import '../../../prayer/presentation/screens/prayer_screen.dart';
-import '../../../prayer/presentation/controllers/prayer_controller.dart';
-import '../../../quran/presentation/controllers/quran_controller.dart';
-import '../../../azkar/presentation/controllers/azkar_controller.dart';
-import '../../../tasbih/presentation/controllers/tasbih_controller.dart';
 import '../../../ummah/presentation/screens/ummah_screen.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
 
@@ -17,10 +13,6 @@ class MainNavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
-    Get.lazyPut(() => PrayerController(), fenix: true);
-    Get.lazyPut(() => QuranController(), fenix: true);
-    Get.lazyPut(() => AzkarController(), fenix: true);
-    Get.lazyPut(() => TasbihController(), fenix: true);
 
     final screens = [
       const HomeScreen(),

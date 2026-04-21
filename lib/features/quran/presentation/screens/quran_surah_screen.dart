@@ -4,49 +4,53 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../controllers/quran_controller.dart';
 
-class QuranSurahScreen extends StatefulWidget {
+class QuranSurahScreen extends StatelessWidget {
   final Map<String, dynamic> surah;
 
   const QuranSurahScreen({super.key, required this.surah});
 
-  @override
-  State<QuranSurahScreen> createState() => _QuranSurahScreenState();
-}
-
-class _QuranSurahScreenState extends State<QuranSurahScreen> {
-  late final QuranController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = Get.find<QuranController>();
-    _controller.fetchSurahAyahs(widget.surah['number'] as int);
-  }
-
-  void _onSavePressed(bool alreadyCached) {
-    final surahNumber = widget.surah['number'] as int;
-    if (alreadyCached) {
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('Supprimer le cache ?'),
-          content: Text('Retirer "${widget.surah['name']}" de la lecture hors-ligne ?'),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Annuler')),
-            TextButton(
-              onPressed: () { Navigator.pop(ctx); _controller.deleteSurahCache(surahNumber); },
-              child: const Text('Supprimer', style: TextStyle(color: Colors.red)),
-            ),
-          ],
-        ),
-      );
-    } else {
-      _controller.saveSurahOffline(surahNumber);
-    }
-  }
+  // Sample ayahs for Al-Fatihah (surah 1)
+  static const List<Map<String, String>> _fatihahAyahs = [
+    {
+      'number': '1',
+      'arabic': 'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+      'translation': 'Au nom d\'Allah, le Tout Miséricordieux, le Très Miséricordieux',
+    },
+    {
+      'number': '2',
+      'arabic': 'الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ',
+      'translation': 'Louange à Allah, Seigneur de l\'univers',
+    },
+    {
+      'number': '3',
+      'arabic': 'الرَّحْمَٰنِ الرَّحِيمِ',
+      'translation': 'Le Tout Miséricordieux, le Très Miséricordieux',
+    },
+    {
+      'number': '4',
+      'arabic': 'مَالِكِ يَوْمِ الدِّينِ',
+      'translation': 'Maître du Jour de la rétribution.',
+    },
+    {
+      'number': '5',
+      'arabic': 'إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ',
+      'translation': 'C\'est Toi [Seul] que nous adorons, et c\'est Toi [Seul] dont nous implorons le secours.',
+    },
+    {
+      'number': '6',
+      'arabic': 'اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ',
+      'translation': 'Guide-nous dans le droit chemin',
+    },
+    {
+      'number': '7',
+      'arabic': 'صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ',
+      'translation': 'le chemin de ceux que Tu as comblés de faveurs, non pas de ceux qui ont encouru Ta colère, ni des égarés.',
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<QuranController>();
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
@@ -64,136 +68,99 @@ class _QuranSurahScreenState extends State<QuranSurahScreen> {
         ),
         title: Column(
           children: [
-            Text(
-              widget.surah['name'] as String,
-              style: AppTextStyles.heading3(
-                  color: isDark
-                      ? AppColors.white
-                      : AppColors.textPrimaryLight),
-            ),
-            Text(
-              '${widget.surah['verses']} versets · ${widget.surah['type']}',
-              style: AppTextStyles.bodySmall(),
-            ),
+            Text(surah['name'],
+                style: AppTextStyles.heading3(
+                    color: isDark
+                        ? AppColors.white
+                        : AppColors.textPrimaryLight)),
+            Text('Juz ${surah['juz']}, Page1',
+                style: AppTextStyles.bodySmall()),
           ],
         ),
         centerTitle: true,
         actions: [
+          IconButton(
+            icon: Icon(Icons.bookmark_border_rounded,
+                color: isDark ? AppColors.white : AppColors.textPrimaryLight),
+            onPressed: () => controller.toggleBookmark(1),
+          ),
           Obx(() => IconButton(
                 icon: Icon(Icons.headset_rounded,
-                    color: _controller.isPlaying.value
+                    color: controller.isPlaying.value
                         ? AppColors.primary
-                        : (isDark ? AppColors.white : AppColors.textPrimaryLight)),
-                onPressed: _controller.togglePlayPause,
+                        : (isDark
+                            ? AppColors.white
+                            : AppColors.textPrimaryLight)),
+                onPressed: controller.togglePlayPause,
               )),
-          Obx(() {
-            final cached = _controller.isCurrentSurahCached.value;
-            final saving = _controller.isSaving.value;
-            if (saving) {
-              return const Padding(
-                padding: EdgeInsets.all(14),
-                child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.gold)),
-              );
-            }
-            return IconButton(
-              icon: Icon(
-                cached ? Icons.download_done_rounded : Icons.download_outlined,
-                color: cached ? AppColors.gold : (isDark ? AppColors.white : AppColors.textPrimaryLight),
-              ),
-              tooltip: cached ? 'Supprimer du cache' : 'Sauvegarder hors-ligne',
-              onPressed: () => _onSavePressed(cached),
-            );
-          }),
+          IconButton(
+            icon: Icon(Icons.more_horiz_rounded,
+                color: isDark ? AppColors.white : AppColors.textPrimaryLight),
+            onPressed: () {},
+          ),
         ],
       ),
       body: Column(
         children: [
           Expanded(
-            child: Obx(() {
-              if (_controller.isLoadingAyahs.value) {
-                return const Center(
-                  child: CircularProgressIndicator(color: AppColors.primary),
-                );
-              }
-              if (_controller.currentAyahs.isEmpty) {
-                return Center(
+            child: ListView(
+              padding: const EdgeInsets.all(20),
+              children: [
+                // Surah header
+                Center(
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.wifi_off_rounded,
-                          size: 48, color: AppColors.primary),
-                      const SizedBox(height: 12),
-                      Text('Impossible de charger les versets',
-                          style: AppTextStyles.bodyMedium()),
-                      const SizedBox(height: 8),
-                      TextButton(
-                        onPressed: () => _controller.fetchSurahAyahs(
-                            widget.surah['number'] as int),
-                        child: const Text('Réessayer'),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40, vertical: 10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: AppColors.gold.withOpacity(0.5), width: 2),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          'سُورَةُ ${surah['nameAr']}',
+                          style: AppTextStyles.arabicLarge(
+                              color: isDark
+                                  ? AppColors.gold
+                                  : AppColors.primaryDark),
+                        ),
                       ),
+                      const SizedBox(height: 12),
+                      Text('بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
+                          style: AppTextStyles.arabicMedium(
+                              color: isDark
+                                  ? AppColors.textPrimaryDark
+                                  : AppColors.textPrimaryLight)),
                     ],
                   ),
-                );
-              }
-              return ListView(
-                padding: const EdgeInsets.all(20),
-                children: [
-                  Center(
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 10),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.gold.withValues(alpha: 0.5),
-                                width: 2),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            widget.surah['nameAr'] as String,
-                            style: AppTextStyles.arabicLarge(
-                                color: isDark
-                                    ? AppColors.gold
-                                    : AppColors.primaryDark),
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        if ((widget.surah['number'] as int) != 9)
-                          Text(
-                            'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',
-                            style: AppTextStyles.arabicMedium(
-                                color: isDark
-                                    ? AppColors.textPrimaryDark
-                                    : AppColors.textPrimaryLight),
-                          ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  ..._controller.currentAyahs.map((ayah) => _AyahTile(
-                        ayah: ayah,
-                        isDark: isDark,
-                        controller: _controller,
-                      )),
-                ],
-              );
-            }),
+                ),
+                const SizedBox(height: 24),
+                // Ayahs
+                ..._fatihahAyahs.map((ayah) => _AyahTile(
+                      ayah: ayah,
+                      isDark: isDark,
+                      controller: controller,
+                    )),
+              ],
+            ),
           ),
-          _buildAudioControls(isDark),
+          // Audio controls
+          _buildAudioControls(context, controller, isDark),
         ],
       ),
     );
   }
 
-  Widget _buildAudioControls(bool isDark) {
+  Widget _buildAudioControls(
+      BuildContext context, QuranController controller, bool isDark) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: isDark ? AppColors.surfaceDark : AppColors.white,
         boxShadow: [
           BoxShadow(
-              color: Colors.black.withValues(alpha: 0.06),
+              color: Colors.black.withOpacity(0.06),
               blurRadius: 10,
               offset: const Offset(0, -2))
         ],
@@ -203,16 +170,18 @@ class _QuranSurahScreenState extends State<QuranSurahScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text('1.0x',
-                style: AppTextStyles.bodyMedium(color: AppColors.primary)
-                    .copyWith(fontWeight: FontWeight.w600)),
+            Text(
+              '1.0x',
+              style: AppTextStyles.bodyMedium(color: AppColors.primary)
+                  .copyWith(fontWeight: FontWeight.w600),
+            ),
             IconButton(
               icon: const Icon(Icons.replay_10_rounded),
               onPressed: () {},
               color: isDark ? AppColors.white : AppColors.textPrimaryLight,
             ),
             GestureDetector(
-              onTap: _controller.togglePlayPause,
+              onTap: controller.togglePlayPause,
               child: Container(
                 width: 54,
                 height: 54,
@@ -221,14 +190,14 @@ class _QuranSurahScreenState extends State<QuranSurahScreen> {
                   gradient: AppColors.primaryGradient,
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.3),
+                      color: AppColors.primary.withOpacity(0.3),
                       blurRadius: 12,
                       spreadRadius: 2,
                     ),
                   ],
                 ),
                 child: Obx(() => Icon(
-                      _controller.isPlaying.value
+                      controller.isPlaying.value
                           ? Icons.pause_rounded
                           : Icons.play_arrow_rounded,
                       color: Colors.white,
@@ -254,7 +223,7 @@ class _QuranSurahScreenState extends State<QuranSurahScreen> {
 }
 
 class _AyahTile extends StatelessWidget {
-  final Map<String, dynamic> ayah;
+  final Map<String, String> ayah;
   final bool isDark;
   final QuranController controller;
 
@@ -267,10 +236,12 @@ class _AyahTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.cardDark : const Color(0xFFFFFDF5),
+        color: isDark
+            ? AppColors.cardDark
+            : const Color(0xFFFFFDF5),
         borderRadius: BorderRadius.circular(16),
-        border:
-            Border.all(color: AppColors.gold.withValues(alpha: 0.15), width: 1),
+        border: Border.all(
+            color: AppColors.gold.withOpacity(0.15), width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -278,6 +249,7 @@ class _AyahTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              // Ayah number badge
               Container(
                 width: 32,
                 height: 32,
@@ -287,7 +259,7 @@ class _AyahTile extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    ayah['number'] as String,
+                    ayah['number']!,
                     style: AppTextStyles.bodySmall(color: AppColors.gold)
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
@@ -302,15 +274,22 @@ class _AyahTile extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
+          // Arabic
           Text(
-            ayah['arabic'] as String,
-            style: AppTextStyles.quranVerse(
-                color: isDark
-                    ? AppColors.textPrimaryDark
-                    : AppColors.textPrimaryLight),
+            ayah['arabic']!,
+            style: controller.showTranslation.value
+                ? AppTextStyles.quranVerse(
+                    color: isDark
+                        ? AppColors.textPrimaryDark
+                        : AppColors.textPrimaryLight)
+                : AppTextStyles.quranVerse(
+                    color: isDark
+                        ? AppColors.textPrimaryDark
+                        : AppColors.textPrimaryLight),
             textAlign: TextAlign.right,
             textDirection: TextDirection.rtl,
           ),
+          // Translation
           Obx(() {
             if (!controller.showTranslation.value) {
               return const SizedBox.shrink();
@@ -320,7 +299,7 @@ class _AyahTile extends StatelessWidget {
               children: [
                 const SizedBox(height: 12),
                 Text(
-                  ayah['translation'] as String,
+                  ayah['translation']!,
                   style: AppTextStyles.bodyMedium(
                     color: isDark
                         ? AppColors.textSecondaryDark

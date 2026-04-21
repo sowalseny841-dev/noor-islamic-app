@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -21,66 +20,10 @@ class _CalendarScreenState extends State<CalendarScreen>
   DateTime _selectedDate = DateTime.now();
   bool _showIslamicFirst = true;
 
-  final _dio = Dio(BaseOptions(baseUrl: 'https://api.aladhan.com/v1', connectTimeout: const Duration(seconds: 10)));
-  List<Map<String, String>> _holidays = [];
-  bool _loadingHolidays = true;
-
-  static const _islamicEvents = [
-    {'nameAr': 'رأس السنة الهجرية', 'name': 'Nouvel An Islamique', 'day': 1, 'month': 1},
-    {'nameAr': 'عاشوراء', 'name': 'Achoura', 'day': 10, 'month': 1},
-    {'nameAr': 'المولد النبوي', 'name': 'Mawlid an-Nabi ﷺ', 'day': 12, 'month': 3},
-    {'nameAr': 'أول رمضان', 'name': 'Début du Ramadan', 'day': 1, 'month': 9},
-    {'nameAr': 'ليلة القدر', 'name': 'Laylat al-Qadr', 'day': 27, 'month': 9},
-    {'nameAr': 'عيد الفطر', 'name': 'Aïd al-Fitr', 'day': 1, 'month': 10},
-    {'nameAr': 'يوم عرفة', 'name': 'Jour d\'Arafat', 'day': 9, 'month': 12},
-    {'nameAr': 'عيد الأضحى', 'name': 'Aïd al-Adha', 'day': 10, 'month': 12},
-  ];
-
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    _fetchHolidays();
-  }
-
-  Future<void> _fetchHolidays() async {
-    setState(() => _loadingHolidays = true);
-    final hijri = HijriDate.now();
-    final results = <Map<String, String>>[];
-    final emojis = ['🌙', '💧', '🌟', '🌙', '✨', '🎉', '⛰️', '🐑'];
-    try {
-      for (int i = 0; i < _islamicEvents.length; i++) {
-        final e = _islamicEvents[i];
-        final d = e['day'] as int;
-        final m = e['month'] as int;
-        final y = hijri.hYear;
-        final res = await _dio.get('/hToG/${d.toString().padLeft(2, '0')}-${m.toString().padLeft(2, '0')}-$y');
-        if (res.statusCode == 200 && res.data['code'] == 200) {
-          final greg = res.data['data'];
-          final date = greg['readable'] as String? ?? '';
-          results.add({
-            'name': e['name'] as String,
-            'nameAr': e['nameAr'] as String,
-            'hijri': '$d ${HijriUtils.getMonthNameAr(m)} $y',
-            'gregorian': date,
-            'emoji': emojis[i],
-          });
-        }
-      }
-    } catch (_) {
-      // fallback to local
-      for (int i = 0; i < _islamicEvents.length; i++) {
-        final e = _islamicEvents[i];
-        results.add({
-          'name': e['name'] as String,
-          'nameAr': e['nameAr'] as String,
-          'hijri': '${e['day']} ${HijriUtils.getMonthNameAr(e['month'] as int)} ${hijri.hYear}',
-          'gregorian': '',
-          'emoji': emojis[i],
-        });
-      }
-    }
-    if (mounted) setState(() { _holidays = results; _loadingHolidays = false; });
   }
 
   @override
@@ -380,59 +323,24 @@ class _CalendarScreenState extends State<CalendarScreen>
   }
 
   Widget _buildHolidaysTab(bool isDark) {
-    if (_loadingHolidays) {
-      return const Center(child: CircularProgressIndicator(color: AppColors.primary));
-    }
-    if (_holidays.isEmpty) {
-      return Center(
-        child: TextButton.icon(
-          icon: const Icon(Icons.refresh_rounded),
-          label: const Text('Réessayer'),
-          onPressed: _fetchHolidays,
-        ),
-      );
-    }
+    final hijri = HijriDate.now();
+    final holidays = HijriUtils.getIslamicHolidays(hijri.hYear);
+
     return ListView.builder(
-      itemCount: _holidays.length,
-      itemBuilder: (_, i) {
-        final h = _holidays[i];
-        return Container(
-          margin: const EdgeInsets.only(bottom: 8),
-          padding: const EdgeInsets.all(12),
+      itemCount: holidays.length,
+      itemBuilder: (_, i) => ListTile(
+        leading: Container(
+          width: 40,
+          height: 40,
           decoration: BoxDecoration(
-            color: isDark ? AppColors.cardDark : AppColors.white,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.gold.withValues(alpha: 0.2)),
+            color: AppColors.gold.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(10),
           ),
-          child: Row(
-            children: [
-              Container(
-                width: 44, height: 44,
-                decoration: BoxDecoration(
-                  color: AppColors.gold.withValues(alpha: 0.1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(child: Text(h['emoji']!, style: const TextStyle(fontSize: 22))),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(h['name']!, style: AppTextStyles.bodyLarge().copyWith(fontWeight: FontWeight.w600)),
-                    Text(h['nameAr']!, style: AppTextStyles.arabicSmall(color: AppColors.primary), textDirection: TextDirection.rtl),
-                    if (h['gregorian']!.isNotEmpty) ...[
-                      const SizedBox(height: 2),
-                      Text(h['gregorian']!, style: AppTextStyles.caption(color: AppColors.textSecondaryLight)),
-                    ],
-                    Text(h['hijri']!, style: AppTextStyles.caption(color: AppColors.primary)),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+          child: const Center(child: Text('🌙', style: TextStyle(fontSize: 20))),
+        ),
+        title: Text(holidays[i]['name']!, style: AppTextStyles.bodyLarge()),
+        subtitle: Text(holidays[i]['date']!, style: AppTextStyles.bodySmall()),
+      ),
     );
   }
 

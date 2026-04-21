@@ -21,8 +21,8 @@ void main() async {
 
   // Initialize services
   await Get.putAsync(() => StorageService().init());
-  await Get.putAsync(() => LocationService().init()).catchError((_) => LocationService());
-  await Get.putAsync(() => NotificationService().init()).catchError((_) => NotificationService());
+  await Get.putAsync(() => LocationService().init());
+  await Get.putAsync(() => NotificationService().init());
 
   runApp(const NoorApp());
 }

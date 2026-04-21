@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/hijri_utils.dart';
+import '../../../quran/presentation/screens/quran_screen.dart';
 
 class AzanScreen extends StatelessWidget {
   final String prayerName;
@@ -219,7 +220,7 @@ class AzanScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: OutlinedButton.icon(
-                            onPressed: () => Get.to(() => const QuranLinkScreen()),
+                            onPressed: () => Get.to(() => const QuranScreen()),
                             icon: const Text('📖', style: TextStyle(fontSize: 16)),
                             label: Text('Coran',
                                 style: AppTextStyles.bodySmall(
@@ -349,14 +350,4 @@ class _MosqueFullPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-// Placeholder for navigation
-class QuranLinkScreen extends StatelessWidget {
-  const QuranLinkScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) => const Scaffold(
-        body: Center(child: Text('Coran')),
-      );
 }

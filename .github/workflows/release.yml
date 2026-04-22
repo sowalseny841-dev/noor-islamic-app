@@ -11,6 +11,9 @@ on:
         required: true
         default: '1.0.0'
 
+permissions:
+  contents: write
+
 env:
   FLUTTER_VERSION: '3.29.0'
   JAVA_VERSION: '17'

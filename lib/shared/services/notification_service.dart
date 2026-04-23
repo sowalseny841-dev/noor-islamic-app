@@ -19,7 +19,6 @@ class NotificationService extends GetxService {
           importance: NotificationImportance.High,
           channelShowBadge: true,
           playSound: true,
-          soundSource: 'resource://raw/adhan',
         ),
         NotificationChannel(
           channelKey: azkarChannelKey,
@@ -56,8 +55,6 @@ class NotificationService extends GetxService {
         notificationLayout: NotificationLayout.Default,
         color: AppColors.primary,
         wakeUpScreen: true,
-        fullScreenIntent: true,
-        category: NotificationCategory.Alarm,
       ),
       schedule: NotificationCalendar.fromDate(date: scheduledTime),
     );

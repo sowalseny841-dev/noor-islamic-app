@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../controllers/home_controller.dart';
 import 'home_screen.dart';
 import '../../../prayer/presentation/screens/prayer_screen.dart';
 import '../../../ummah/presentation/screens/ummah_screen.dart';
@@ -21,7 +19,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     const HomeScreen(),
     const PrayerScreen(),
     const UmmahScreen(),
-    const Center(child: Text('Messages')), // placeholder
     const SettingsScreen(),
   ];
 
@@ -94,16 +91,9 @@ class _NoorBottomNavBar extends StatelessWidget {
                 isActive: currentIndex == 2,
               ),
               _NavItem(
-                icon: Icons.chat_bubble_outline_rounded,
-                label: 'Messages',
-                index: 3,
-                current: currentIndex,
-                onTap: onTap,
-              ),
-              _NavItem(
                 icon: Icons.person_outline_rounded,
                 label: 'Moi',
-                index: 4,
+                index: 3,
                 current: currentIndex,
                 onTap: onTap,
               ),

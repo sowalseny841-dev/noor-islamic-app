@@ -195,23 +195,23 @@ class HomeScreen extends StatelessWidget {
   Widget _buildFeatureGrid(BuildContext context) {
     final features = [
       _Feature('Coran', 'القرآن', '📖', AppColors.primaryDark,
-          () => Get.to(() => const QuranScreen())),
+          () => Navigator.push(context, MaterialPageRoute(builder: (_) => const QuranScreen()))),
       _Feature('Azkar', 'الأذكار', '🌿', const Color(0xFF2D6A4F),
-          () => Get.to(() => const AzkarListScreen())),
+          () => Navigator.push(context, MaterialPageRoute(builder: (_) => const AzkarListScreen()))),
       _Feature('Tasbih', 'التسبيح', '📿', const Color(0xFF1A472A),
-          () => Get.to(() => const TasbihScreen())),
+          () => Navigator.push(context, MaterialPageRoute(builder: (_) => const TasbihScreen()))),
       _Feature('Qibla', 'القبلة', '🧭', const Color(0xFF386641),
-          () => Get.to(() => const QiblaScreen())),
+          () => Navigator.push(context, MaterialPageRoute(builder: (_) => const QiblaScreen()))),
       _Feature('Mosquée', 'المسجد', '🕌', const Color(0xFF4A7C59),
-          () {}),
+          () => Navigator.push(context, MaterialPageRoute(builder: (_) => const _ComingSoonPage(title: 'Mosquée', nameAr: 'المسجد', emoji: '🕌')))),
       _Feature('Calendrier', 'التقويم', '📅', const Color(0xFF357A38),
-          () => Get.to(() => const CalendarScreen())),
+          () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CalendarScreen()))),
       _Feature('Dua', 'الدعاء', '🤲', const Color(0xFF5C8D4A),
-          () {}),
+          () => Navigator.push(context, MaterialPageRoute(builder: (_) => const _ComingSoonPage(title: 'Dua', nameAr: 'الدعاء', emoji: '🤲')))),
       _Feature('Galerie', 'معرض', '🖼️', const Color(0xFF2F6F4E),
-          () {}),
+          () => Navigator.push(context, MaterialPageRoute(builder: (_) => const _ComingSoonPage(title: 'Galerie', nameAr: 'معرض', emoji: '🖼️')))),
       _Feature('99 Noms', 'أسماء الله', '✨', const Color(0xFF1E5631),
-          () {}),
+          () => Navigator.push(context, MaterialPageRoute(builder: (_) => const _ComingSoonPage(title: '99 Noms', nameAr: 'أسماء الله', emoji: '✨')))),
     ];
 
     return Column(
@@ -347,6 +347,66 @@ class _FeatureTile extends StatelessWidget {
                 color: Colors.white,
               ),
               textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ComingSoonPage extends StatelessWidget {
+  final String title;
+  final String nameAr;
+  final String emoji;
+
+  const _ComingSoonPage({
+    required this.title,
+    required this.nameAr,
+    required this.emoji,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return Scaffold(
+      backgroundColor: isDark ? AppColors.backgroundDark : const Color(0xFFFFFBF0),
+      appBar: AppBar(
+        backgroundColor: isDark ? AppColors.surfaceDark : const Color(0xFFFFFBF0),
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_new_rounded,
+              color: isDark ? AppColors.white : AppColors.textPrimaryLight,
+              size: 20),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          title,
+          style: AppTextStyles.heading3(
+              color: isDark ? AppColors.white : AppColors.textPrimaryLight),
+        ),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(emoji, style: const TextStyle(fontSize: 64)),
+            const SizedBox(height: 16),
+            Text(nameAr,
+                style: AppTextStyles.arabicLarge(color: AppColors.primary)),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+              decoration: BoxDecoration(
+                color: AppColors.primary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: AppColors.primary.withValues(alpha: 0.3)),
+              ),
+              child: Text(
+                'Bientôt disponible',
+                style: AppTextStyles.bodyMedium(color: AppColors.primary),
+              ),
             ),
           ],
         ),

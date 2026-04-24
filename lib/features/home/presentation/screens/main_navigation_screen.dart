@@ -7,31 +7,38 @@ import '../../../prayer/presentation/screens/prayer_screen.dart';
 import '../../../ummah/presentation/screens/ummah_screen.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
 
-class MainNavigationScreen extends StatelessWidget {
+class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
 
   @override
+  State<MainNavigationScreen> createState() => _MainNavigationScreenState();
+}
+
+class _MainNavigationScreenState extends State<MainNavigationScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const PrayerScreen(),
+    const UmmahScreen(),
+    const Center(child: Text('Messages')), // placeholder
+    const SettingsScreen(),
+  ];
+
+  void _onTabTapped(int index) {
+    setState(() => _currentIndex = index);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
-
-    final screens = [
-      const HomeScreen(),
-      const PrayerScreen(),
-      const UmmahScreen(),
-      const Center(child: Text('Messages')), // placeholder
-      const SettingsScreen(),
-    ];
-
-    return Obx(
-      () => Scaffold(
-        body: IndexedStack(
-          index: controller.currentIndex.value,
-          children: screens,
-        ),
-        bottomNavigationBar: _NoorBottomNavBar(
-          currentIndex: controller.currentIndex.value,
-          onTap: controller.changeTab,
-        ),
+    return Scaffold(
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _screens,
+      ),
+      bottomNavigationBar: _NoorBottomNavBar(
+        currentIndex: _currentIndex,
+        onTap: _onTabTapped,
       ),
     );
   }
